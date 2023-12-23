@@ -18,7 +18,6 @@ const cartReducer = (state, action) => {
     );
 
     if (existingProductIndex !== -1) {
-      
       alert(1);
       state.nbItems += 1;
       // Increment the quantity of the existing product by one
@@ -65,11 +64,11 @@ const ShopContextProvider = (props) => {
 
   const contextValue = {
     all_product,
+    refs: { newCollectionsRef: null },
     cartItems: cartState.cartItems,
     nbItems: cartState.nbItems,
     addItem: addItem,
   };
-
   console.log(cartState.cartItems);
 
   return (

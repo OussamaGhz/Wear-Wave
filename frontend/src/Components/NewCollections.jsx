@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import ShowCase from "./ShowCase";
 import Collections from "./Assets/new_collections";
 import FilterDropdown from "./FilterDropdown";
+import { shopContext } from "../Context/ShopContext";
 
 const NewCollections = () => {
+  const collecionRef = useRef(null);
+  const ctx = useContext(shopContext);
+  ctx.refs.newCollectionsRef = collecionRef;
   const [filteredCollections, setFilteredCollections] = useState(Collections);
 
   const handleFilterChange = (filter) => {
@@ -16,7 +20,7 @@ const NewCollections = () => {
   };
 
   return (
-    <div id="newCollections">
+    <div id="newCollections" ref={collecionRef}>
       <ShowCase title={"New Collections"} items={filteredCollections}>
         <FilterDropdown onFilterChange={handleFilterChange} />
       </ShowCase>

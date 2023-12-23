@@ -31,7 +31,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="bg-pink-200 xl:h-screen w-full flex justify-center">
+    <div className="bg-pink-200 xl:h-full w-full flex justify-center">
       <form
         className="bg-white my-auto p-10 sm:my-20 sm:w-2/5"
         onSubmit={handleSubmit(submitHandler)}

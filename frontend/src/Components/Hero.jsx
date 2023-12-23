@@ -1,6 +1,12 @@
+import { useContext, useRef } from "react";
 import welcomePageImage from "./Assets/hero_image.png";
+import { shopContext } from "../Context/ShopContext";
 
 const Hero = () => {
+  const { refs } = useContext(shopContext);
+  const clickHandler = () => {
+    refs.newCollectionsRef.current.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <div className="flex justify-center sm:flex-row flex-col py-5 sm:py-5 bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 md:px-24 items-center">
       <div className="text-left sm:w-1/2 flex flex-col justify-center items-center">
@@ -18,6 +24,7 @@ const Hero = () => {
             </h1>
           </span>
           <button
+            onClick={clickHandler}
             className="flex select-none mt-10 items-center gap-2 rounded-full py-2 px-4 sm:py-3 sm:px-6 text-center align-middle text-sm sm:text-base font-bold uppercase text-white transition-all bg-red-600 hover:bg-pink-500 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button"
             data-ripple-dark="true"

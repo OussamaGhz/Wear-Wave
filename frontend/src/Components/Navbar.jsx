@@ -14,7 +14,7 @@ const Navbar = () => {
 
 
   return (
-    <nav className="min-w-screen-sm flex justify-between sm:justify-around items-center text-base w-full p-3 lg:text-lg ">
+    <nav className="min-w-screen-sm flex justify-between sm:justify-between items-center text-base w-full p-3 lg:text-lg ">
       <Link to="/" className="flex items-center gap-2 font-bold">
         <img src={logo} alt="logo" />
         <h1 className="text-3xl hidden sm:block">SHOOPER</h1>
