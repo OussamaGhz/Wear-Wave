@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import ShowCase from "./ShowCase";
 import Collections from "./Assets/new_collections";
 import FilterDropdown from "./FilterDropdown";
