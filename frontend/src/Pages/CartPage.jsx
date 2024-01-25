@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { shopContext } from "../Context/ShopContext";
 
 const CartPage = () => {
-  const { cartItems } = useContext(shopContext);
+  const { cartItems, removeItem } = useContext(shopContext);
   const displayItems = cartItems.map((item) => {
     // Ensure new_price is a string and then remove the dollar sign
     const priceStr =
@@ -18,17 +18,21 @@ const CartPage = () => {
 
     // Calculate total
     let total = finalPrice * item.qty;
-    console.log(total);
 
     return {
       image: item.image,
+      title: item.name,
       price: finalPrice,
       quantity: item.qty,
       total: total,
     };
   });
 
-  console.log(displayItems);
+const onButtonRemoveClicked = (e) => {
+
+
+}
+
   return (
     <div className="w-10/12 mx-auto mt-10 overflow-x-auto">
       <table className="min-w-full leading-normal">
@@ -36,6 +40,9 @@ const CartPage = () => {
           <tr>
             <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
               Photo
+            </th>
+            <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">
+              Title
             </th>
             <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider ">
               Price 
@@ -62,6 +69,9 @@ const CartPage = () => {
                 />
               </td>
               <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+                {product.title}
+              </td>
+              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 ${product.price}
               </td>
               <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
@@ -71,7 +81,7 @@ const CartPage = () => {
                 ${product.total}
               </td>
               <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
-                <button className="text-red-500 hover:text-red-700">
+                <button className="text-red-500 hover:text-red-700" onClick={onButtonRemoveClicked}>
                   Remove
                 </button>
               </td>
