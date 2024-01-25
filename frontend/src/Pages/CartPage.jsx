@@ -3,6 +3,7 @@ import { shopContext } from "../Context/ShopContext";
 
 const CartPage = () => {
   const { cartItems, removeItem } = useContext(shopContext);
+  console.log(cartItems);
   const displayItems = cartItems.map((item) => {
     // Ensure new_price is a string and then remove the dollar sign
     const priceStr =
@@ -20,6 +21,7 @@ const CartPage = () => {
     let total = finalPrice * item.qty;
 
     return {
+      id: item.id,
       image: item.image,
       title: item.name,
       price: finalPrice,
@@ -28,10 +30,9 @@ const CartPage = () => {
     };
   });
 
-const onButtonRemoveClicked = (e) => {
-
-
-}
+  const onButtonRemoveClicked = (id) => {
+    removeItem(id);
+  };
 
   return (
     <div className="w-10/12 mx-auto mt-10 overflow-x-auto">
@@ -45,14 +46,14 @@ const onButtonRemoveClicked = (e) => {
               Title
             </th>
             <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider ">
-              Price 
-            </th> 
+              Price
+            </th>
             <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider ">
-              Quantity 
-            </th> 
+              Quantity
+            </th>
             <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider ">
-              Total 
-            </th> 
+              Total
+            </th>
             <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider ">
               Remove
             </th>
@@ -81,7 +82,12 @@ const onButtonRemoveClicked = (e) => {
                 ${product.total}
               </td>
               <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
-                <button className="text-red-500 hover:text-red-700" onClick={onButtonRemoveClicked}>
+                <button
+                  className="text-red-500 hover:text-red-700"
+                  onClick={() => {
+                    onButtonRemoveClicked(product.id);
+                  }}
+                >
                   Remove
                 </button>
               </td>
