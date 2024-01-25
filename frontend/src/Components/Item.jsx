@@ -3,7 +3,7 @@ import React from "react";
 
 const Item = (props) => {
   return (
-    <div className="card card-compact w-auto p-10 bg-base-100 shadow-xl flex-1 font-semibold hover:scale-105 transition-all ease-out delay-30000">
+    <div className="card card-compact w-auto p-10 bg-base-100 shadow-xl flex-1 font-semibold hover:scale-105 transition-all ease-out delay-30000 h-96">
       <figure>
         <img
           src={props.image}
