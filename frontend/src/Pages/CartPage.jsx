@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { shopContext } from "../Context/ShopContext";
 
 const CartPage = () => {
-  const { cartItems, removeItem } = useContext(shopContext);
-  console.log(cartItems);
+  const { cartItems, decreaseItem, removeItem, increaseItem } =
+    useContext(shopContext);
   const displayItems = cartItems.map((item) => {
     // Ensure new_price is a string and then remove the dollar sign
     const priceStr =
@@ -32,6 +32,13 @@ const CartPage = () => {
 
   const onButtonRemoveClicked = (id) => {
     removeItem(id);
+  };
+
+  const increaseQuantity = (id) => {
+    increaseItem(id);
+  };
+  const decreaseQuantity = (id) => {
+    decreaseItem(id);
   };
 
   return (
@@ -75,8 +82,21 @@ const CartPage = () => {
               <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 ${product.price}
               </td>
-              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+              <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center flex items-center justify-center gap-2 ">
+                <button
+                  className="bg-green-500 text-white font-bold py-1 px-2 rounded hover:bg-green-600"
+                  onClick={() => increaseQuantity(product.id)}
+                >
+                  +
+                </button>
                 {product.quantity}
+                <button
+                  className="bg-red-500 text-white font-bold py-1 px-2 rounded hover:bg-red-600"
+                  onClick={() => decreaseQuantity(product.id)}
+                  disabled={product.quantity <= 1}
+                >
+                  -
+                </button>
               </td>
               <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                 ${product.total}
