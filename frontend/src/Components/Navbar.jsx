@@ -14,7 +14,7 @@ const Navbar = () => {
 
 
   return (
-    <nav className="min-w-screen-sm flex justify-between sm:justify-between items-center text-base w-full p-3 lg:text-lg">
+    <nav className="min-w-screen-sm flex justify-between sm:justify-between items-center text-base w-full px-3 lg:text-lg">
       <Link to="/" className="flex items-center gap-2 font-bold">
         <img src={logo} alt="logo" />
         <h1 className="text-3xl hidden sm:block">SHOOPER</h1>
@@ -173,17 +173,17 @@ const Navbar = () => {
         </li>
       </ul>
       {/* Login and cart for normal screens */}
-      <div className="hidden sm:flex gap-4 items-center relative">
+      <div className="hidden sm:flex gap-2   items-center relative">
         {/* Login button - visible on normal screens */}
         <NavLink
           to="/signup"
-          className="py-3 px-5 lg:px-7 text-sm font-semibold rounded-full border border-gray-200 hover:bg-gray-700 dark:bg-gray-800 text-white"
+          className="py-2 px-5 lg:px-7 text-sm font-semibold rounded-full border border-gray-200 hover:bg-gray-700 dark:bg-gray-800 text-white"
         >
           Signup
         </NavLink>
         <NavLink
           to="/login"
-          className="py-3 px-5 lg:px-7 text-sm font-semibold rounded-full border border-gray-200 hover:bg-gray-700 dark:bg-gray-800 text-white"
+          className="py-2 px-5 lg:px-7 text-sm font-semibold rounded-full border border-gray-200 hover:bg-gray-700 dark:bg-gray-800 text-white"
         >
           Login
         </NavLink>

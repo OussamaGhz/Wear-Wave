@@ -4,6 +4,7 @@ import { shopContext } from "../Context/ShopContext";
 const CartPage = () => {
   const { cartItems, decreaseItem, removeItem, increaseItem } =
     useContext(shopContext);
+  console.log(cartItems);
   const displayItems = cartItems.map((item) => {
     // Ensure new_price is a string and then remove the dollar sign
     const priceStr =
@@ -29,6 +30,10 @@ const CartPage = () => {
       total: total,
     };
   });
+
+  const total = cartItems.reduce((acc, item) => {
+    return acc + item.new_price * item.qty;
+  }, 0);
 
   const onButtonRemoveClicked = (id) => {
     removeItem(id);
@@ -125,7 +130,7 @@ const CartPage = () => {
           <div>
             <div className="flex justify-between items-center border-b-2 py-2">
               <span>Subtotal</span>
-              <span>$0</span>
+              <span>${total}</span>
             </div>
             <div className="flex justify-between items-center border-b-2 py-2">
               <span>Shipping Fee</span>
@@ -133,7 +138,7 @@ const CartPage = () => {
             </div>
             <div className="flex justify-between items-center border-b-2 py-2 font-bold">
               <span>Total</span>
-              <span>$0</span>
+              <span>${total}</span>
             </div>
           </div>
           <button className="flex select-none mt-10 items-center gap-2 rounded-full py-2 px-4 sm:py-3 sm:px-6 text-center align-middle text-sm sm:text-base font-bold uppercase text-white transition-all bg-red-600 hover:bg-pink-500 active:bg-pink-500/30 md:ml-auto">
