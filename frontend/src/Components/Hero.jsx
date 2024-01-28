@@ -20,21 +20,31 @@ const Hero = () => {
     }
   }, [isInView]);
 
-  const heroVairants = {
-    hidden: { opacity: 0, y: -75 },
+  const heroVariants = {
+    hidden: { opacity: 0, x: -75 }, // Move from left to right (for the div)
     visible: {
       opacity: 1,
-      transition: { duration: 0.5, delay: 0.2 },
-      y: 0,
+      transition: { duration: 0.8, delay: 0.2 },
+      x: 0, // Start position (for both div and image)
     },
   };
+
+  const imgVariants = {
+    hidden: { opacity: 0, x: 75 }, // Move from right to left (for the image)
+    visible: {
+      opacity: 1,
+      transition: { duration: 0.8, delay: 0.2 },
+      x: 0, // Start position (for both div and image)
+    },
+  };
+
   return (
     <div
       ref={ref}
       className="flex justify-center sm:flex-row flex-col py-5 sm:py-5 bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 md:px-24 items-center"
     >
       <motion.div
-        variants={heroVairants}
+        variants={heroVariants}
         initial="hidden"
         animate={mainControls}
         className="text-left sm:w-1/2 flex flex-col justify-center items-center"
@@ -77,7 +87,7 @@ const Hero = () => {
           </button>
         </div>
       </motion.div>
-      <motion.div variants={heroVairants} initial="hidden" animate="visible">
+      <motion.div variants={imgVariants} initial="hidden" animate="visible">
         <img
           src={welcomePageImage}
           alt="image"
