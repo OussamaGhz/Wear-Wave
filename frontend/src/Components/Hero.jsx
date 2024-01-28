@@ -1,15 +1,44 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import welcomePageImage from "./Assets/hero_image.png";
 import { shopContext } from "../Context/ShopContext";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 const Hero = () => {
   const { refs } = useContext(shopContext);
   const clickHandler = () => {
     refs.newCollectionsRef.current.scrollIntoView({ behavior: "smooth" });
   };
+
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start("visible");
+    }
+  }, [isInView]);
+
+  const heroVairants = {
+    hidden: { opacity: 0, y: -75 },
+    visible: {
+      opacity: 1,
+      transition: { duration: 0.5, delay: 0.2 },
+      y: 0,
+    },
+  };
   return (
-    <div className="flex justify-center sm:flex-row flex-col py-5 sm:py-5 bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 md:px-24 items-center">
-      <div className="text-left sm:w-1/2 flex flex-col justify-center items-center">
+    <div
+      ref={ref}
+      className="flex justify-center sm:flex-row flex-col py-5 sm:py-5 bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 md:px-24 items-center"
+    >
+      <motion.div
+        variants={heroVairants}
+        initial="hidden"
+        animate={mainControls}
+        className="text-left sm:w-1/2 flex flex-col justify-center items-center"
+      >
         <div className="my-auto">
           <span>
             <p className="text-lg font-semibold mb-2">NEW ARRIVALS ONLY</p>
@@ -47,12 +76,14 @@ const Hero = () => {
             </svg>
           </button>
         </div>
-      </div>
-      <img
-        src={welcomePageImage}
-        alt="image"
-        className="mt-4 sm:mt-0 max-w-xs"
-      />
+      </motion.div>
+      <motion.div variants={heroVairants} initial="hidden" animate="visible">
+        <img
+          src={welcomePageImage}
+          alt="image"
+          className="mt-4 sm:mt-0 max-w-xs"
+        />
+      </motion.div>
     </div>
   );
 };
